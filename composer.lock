@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66559480dea8532df6a457e4e313a236",
+    "content-hash": "e4a45dafa787424c9999b589a1e25dfe",
     "packages": [
         {
             "name": "league/flysystem",
@@ -616,6 +616,54 @@
                 "source": "https://github.com/top-think/think-helper/tree/v3.1.6"
             },
             "time": "2021-12-15T04:27:55+00:00"
+        },
+        {
+            "name": "topthink/think-multi-app",
+            "version": "v1.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/top-think/think-multi-app.git",
+                "reference": "387e0dac059c20f92cac5da41a871e10829c1c97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/top-think/think-multi-app/zipball/387e0dac059c20f92cac5da41a871e10829c1c97",
+                "reference": "387e0dac059c20f92cac5da41a871e10829c1c97",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "topthink/framework": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "think": {
+                    "services": [
+                        "think\\app\\Service"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "think\\app\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "liu21st",
+                    "email": "liu21st@gmail.com"
+                }
+            ],
+            "description": "thinkphp6 multi app support",
+            "support": {
+                "issues": "https://github.com/top-think/think-multi-app/issues",
+                "source": "https://github.com/top-think/think-multi-app/tree/v1.0.15"
+            },
+            "time": "2022-10-26T08:03:06+00:00"
         },
         {
             "name": "topthink/think-orm",
