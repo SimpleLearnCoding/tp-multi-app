@@ -1,0 +1,92 @@
+// @no-cookie-jar
+// @no-log
+GET http://localhost:9091
+Content-Type: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+
+client.test("Response content-type is json", function() {
+  var type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+
+client.test("Data option exists", function() {
+  client.assert(response.body.hasOwnProperty("data"), "Cannot find 'data' option in response");
+  client.log('Error message: ' + response.body['msg'] || "Cannot find 'msg' in response");
+});
+
+client.test("Return code should be 200", function() {
+  client.assert(200 === response.body['code'], "Return code should be 200 instead of [" + response.body['code'] + ']');
+});
+
+client.test("The application should be admin", function() {
+  client.assert('admin' === response.body['data']['app'], "The application should be admin instead of [" + response.body['data']['app'] + "]");
+});
+%}
+
+
+###
+
+// @no-cookie-jar
+// @no-log
+GET http://localhost:9092
+Content-Type: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+
+client.test("Response content-type is json", function() {
+  var type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+
+client.test("Data option exists", function() {
+  client.assert(response.body.hasOwnProperty("data"), "Cannot find 'data' option in response");
+});
+
+client.test("Return code should be 200", function() {
+  client.assert(200 === response.body['code'], "Return code should be 200 instead of [" + response.body['code'] + ']');
+  client.log('Error message: ' + response.body['msg'] || "Cannot find 'msg' in response");
+});
+
+client.test("The application should be business", function() {
+  client.assert('business' === response.body['data']['app'], "The application should be business instead of [" + response.body['data']['app'] + "]");
+});
+%}
+
+
+###
+
+// @no-cookie-jar
+// @no-log
+GET http://localhost:9093
+Content-Type: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+
+client.test("Response content-type is json", function() {
+  var type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+
+client.test("Data option exists", function() {
+  client.assert(response.body.hasOwnProperty("data"), "Cannot find 'data' option in response");
+  client.log('Error message: ' + response.body['msg'] || "Cannot find 'msg' in response");
+});
+
+client.test("Return code should be 200", function() {
+  client.assert(200 === response.body['code'], "Return code should be 200 instead of [" + response.body['code'] + ']');
+});
+
+client.test("The application should be api", function() {
+  client.assert('api' === response.body['data']['app'], "The application should be api instead of [" + response.body['data']['app'] + "]");
+});
+%}
