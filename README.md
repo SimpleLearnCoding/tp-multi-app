@@ -16,7 +16,7 @@ ThinkPHP 6.1
 
 ```bash
 # ex: create Admin App
-php think build admin
+$ php think build admin
 ```
 
 #### Docker Compose 配置
