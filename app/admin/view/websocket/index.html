@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket</title>
+</head>
+<body>
+<script>
+    ws = new WebSocket("ws://localhost:9345");
+
+    let counter = 0;
+    ws.onopen = function() {
+        console.info("WebSocket通道建立成功！！！");
+        ws.send("hello");
+        console.debug("给服务端发送一个字符串：hello");
+    };
+    ws.onerror = function(even) {
+        console.error("服务端错误：", even);
+        counter++;
+    };
+    ws.onmessage = function(even) {
+        console.info("收到服务端的消息：" + even.data);
+        counter++;
+    };
+    if (counter > 10) {
+        ws.onclose = function(even) {
+            console.warn(`已收到 ${counter} 条消息，自动关闭 websocket 连接`);
+        }
+    }
+</script>
+</body>
+</html>
