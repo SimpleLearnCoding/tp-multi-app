@@ -4,9 +4,8 @@
 namespace app\admin\controller;
 
 
-use think\response\Json;
+use worker\WebSocketService;
 use Workerman\Connection\ConnectionInterface;
-use Workerman\Worker;
 
 /**
  * Class WebsocketController
@@ -14,25 +13,14 @@ use Workerman\Worker;
  * @author  linnzh
  * @created 2023/2/7 11:02
  */
-class WebsocketController extends \think\worker\Server
+class WebsocketController extends WebSocketService
 {
-    protected $socket = 'websocket://0.0.0.0:2345';
-
-    public function onWorkerStart(Worker $worker)
-    {
-        echo sprintf('%s worker status is %s' . PHP_EOL, date('Y-m-d H:i:s'), 'onWorkerStart');
-    }
-
-    public function onWorkerReload(Worker $worker)
-    {
-        echo sprintf('%s worker status is %s' . PHP_EOL, date('Y-m-d H:i:s'), 'onWorkerReload');
-    }
-
-    public function onConnect(ConnectionInterface $connection)
-    {
-        echo sprintf('%s worker status is %s' . PHP_EOL, date('Y-m-d H:i:s'), 'onConnect');
-        $connection->send('成功连接！' . date('Y-m-d H:i:s'));
-    }
+    /**
+     * @var string[] 支持 workerman 的所有配置参数
+     */
+    protected $option = [
+        'name' => 'Demo',
+    ];
 
     public function onMessage(ConnectionInterface $connection, $data)
     {
@@ -48,24 +36,10 @@ class WebsocketController extends \think\worker\Server
                 $connection->close();
             }
         }
-
-    }
-
-    public function onClose(ConnectionInterface $connection)
-    {
-        echo sprintf('%s worker status is %s' . PHP_EOL, date('Y-m-d H:i:s'), 'onClose');
-        $connection->send('连接已关闭');
-    }
-
-    public function onError(ConnectionInterface $connection, $code, $msg)
-    {
-        echo sprintf('%s worker status is %s' . PHP_EOL, date('Y-m-d H:i:s'), 'onError');
-        echo sprintf('Error [%d] $s' . PHP_EOL, $code, $msg);
-        $connection->send('连接出错');
     }
 
     private function rawResponse(array $data = null)
     {
-        return Json::create($data)->getContent();
+        return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 }
