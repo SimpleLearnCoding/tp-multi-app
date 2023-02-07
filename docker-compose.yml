@@ -25,5 +25,7 @@ services:
       - .:/opt/www
     expose:
       - 9000
+    ports:
+      - 9345:2345
     networks:
       - default
