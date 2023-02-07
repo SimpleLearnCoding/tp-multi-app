@@ -11,4 +11,9 @@ class IndexController extends BaseController
     {
         return json(['code' => 200, 'msg' => 'Successful', 'data' => ['app' => 'admin']], 200, ['Content-Type' => 'application/json']);
     }
+
+    public function websocket()
+    {
+        return view('websocket/index');
+    }
 }
